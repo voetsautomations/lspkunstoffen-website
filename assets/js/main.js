@@ -2,9 +2,19 @@
   var toggle = document.querySelector('.nav-toggle');
   var nav = document.getElementById('site-nav');
 
+  var header = document.querySelector('.site-header');
+
+  // Header is transparant over de hero-foto; wit zodra je scrolt of het menu opent.
+  function updateHeader() {
+    header.classList.toggle('is-solid', window.scrollY > 24 || nav.classList.contains('is-open'));
+  }
+  window.addEventListener('scroll', updateHeader, { passive: true });
+  updateHeader();
+
   function setNav(open) {
     toggle.setAttribute('aria-expanded', String(open));
     nav.classList.toggle('is-open', open);
+    updateHeader();
   }
 
   if (toggle && nav) {

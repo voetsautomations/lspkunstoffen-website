@@ -7,7 +7,7 @@
   <meta name="description" content="Officieel importeur van Bellier brommobielen (B8, Docker) en Ellectra (Kimsi rolstoelauto, Streeter bestelwagen) voor Nederland en België. Plan een proefrit.">
   <link rel="canonical" href="https://slimmobiel.nl/">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-  <meta name="theme-color" content="#262626">
+  <meta name="theme-color" content="#161616">
 
   <meta property="og:locale" content="nl_NL">
   <meta property="og:type" content="website">
@@ -27,7 +27,7 @@
 
   <link rel="preload" href="/assets/fonts/barlow-700-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/barlow-400-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" as="image" href="/images/models/hero-lineup.webp" type="image/webp" fetchpriority="high">
+  <link rel="preload" as="image" href="/images/photos/streeter-1280.webp" imagesrcset="/images/photos/streeter-800.webp 800w, /images/photos/streeter-1280.webp 1280w, /images/photos/streeter-2000.webp 2000w" imagesizes="(max-width: 760px) 100vw, 64vw" type="image/webp" fetchpriority="high">
   <link rel="stylesheet" href="/assets/css/styles.css">
 
   <script type="application/ld+json">
@@ -86,7 +86,7 @@
         "name": "Bellier brommobielen & Ellectra | Importeur Slim-Mobiel",
         "isPartOf": {"@id": "https://slimmobiel.nl/#website"},
         "about": {"@id": "https://slimmobiel.nl/#organization"},
-        "primaryImageOfPage": "https://slimmobiel.nl/images/models/hero-lineup.webp",
+        "primaryImageOfPage": "https://slimmobiel.nl/images/photos/streeter-2000.webp",
         "inLanguage": "nl-NL"
       },
       {
@@ -147,23 +147,14 @@
   }
   </script>
 </head>
-<body>
+<body class="has-hero">
   <a class="skip-link" href="#main">Naar de inhoud</a>
-
-  <div class="topbar">
-    <div class="wrap topbar-inner">
-      <p>Officieel importeur van Bellier en Ellectra voor Nederland en België</p>
-      <ul>
-        <li><a href="tel:+31413471656">0413 47 16 56</a></li>
-        <li><a href="mailto:info@slim-mobiel.nl">info@slim-mobiel.nl</a></li>
-      </ul>
-    </div>
-  </div>
 
   <header class="site-header" id="top">
     <div class="wrap header-inner">
       <a class="brand" href="/" aria-label="Slim-Mobiel B.V., naar de homepage">
-        <img src="/images/logo-slim-mobiel.svg" alt="Slim-Mobiel B.V." width="410" height="62">
+        <img class="logo-dark" src="/images/logo-slim-mobiel.svg" alt="Slim-Mobiel B.V." width="410" height="62">
+        <img class="logo-light" src="/images/logo-slim-mobiel-inverse.svg" alt="" width="410" height="62">
       </a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
         <span class="nav-toggle-bar" aria-hidden="true"></span>
@@ -176,6 +167,7 @@
           <li><a href="#vragen">Rijbewijs &amp; regels</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
+        <a class="nav-phone" href="tel:+31413471656">0413 47 16 56</a>
         <a class="btn btn-primary nav-cta" href="#proefrit">Proefrit plannen</a>
       </nav>
     </div>
@@ -183,23 +175,23 @@
 
   <main id="main">
     <section class="hero" aria-labelledby="hero-title">
-      <div class="wrap hero-grid">
-        <div class="hero-copy">
-          <h1 id="hero-title">Brommobielen en elektrische voertuigen van Bellier en Ellectra</h1>
-          <p class="hero-lead">Slim-Mobiel is de officiële importeur voor Nederland en België. Voor wie zonder autorijbewijs wil rijden, voor bedrijven die compact willen vervoeren en voor rolstoelgebruikers die zelfstandig op pad willen.</p>
-          <div class="hero-actions">
-            <a class="btn btn-primary btn-lg" href="#modellen">Bekijk de modellen</a>
-            <a class="btn btn-outline btn-lg" href="#proefrit">Plan een proefrit</a>
-          </div>
-          <div class="hero-brands">
-            <span>Officieel importeur van</span>
-            <img src="/images/brands/bellier.png" alt="Bellier Automobiles" width="151" height="67">
-            <img src="/images/brands/ellectra.png" alt="Ellectra" width="145" height="73">
-          </div>
+      <img class="hero-bg" src="/images/photos/streeter-1280.webp" srcset="/images/photos/streeter-800.webp 800w, /images/photos/streeter-1280.webp 1280w, /images/photos/streeter-2000.webp 2000w" sizes="(max-width: 760px) 100vw, 64vw" alt="Ellectra Streeter elektrische bestelwagen voor een bedrijfspand" width="2000" height="1492" fetchpriority="high">
+      <div class="wrap hero-inner">
+        <p class="hero-kicker">Officieel importeur voor Nederland en België</p>
+        <h1 id="hero-title">Brommobielen en elektrische voertuigen van Bellier en Ellectra</h1>
+        <p class="hero-lead">Voor wie zonder autorijbewijs wil rijden, voor bedrijven die compact willen vervoeren en voor rolstoelgebruikers die zelfstandig op pad willen.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary btn-lg" href="#modellen">Bekijk de modellen</a>
+          <a class="btn btn-ghost btn-lg" href="#proefrit">Plan een proefrit</a>
         </div>
-        <figure class="hero-media">
-          <img src="/images/models/hero-lineup.webp" alt="De Bellier Docker, Bellier B8 en Ellectra Kimsi naast elkaar" width="1372" height="709" fetchpriority="high">
-        </figure>
+      </div>
+    </section>
+
+    <section class="brands" aria-label="Merken">
+      <div class="wrap brands-inner">
+        <p>Officieel importeur van</p>
+        <img src="/images/brands/bellier.png" alt="Bellier Automobiles" width="151" height="67">
+        <img src="/images/brands/ellectra.png" alt="Ellectra" width="145" height="73">
       </div>
     </section>
 
@@ -236,7 +228,7 @@
           </li>
           <li class="range-item">
             <a href="#ellectra-streeter">
-              <span class="range-media"><img src="/images/models/ellectra-streeter.webp" alt="" width="682" height="462" loading="lazy" decoding="async"></span>
+              <span class="range-media"><img src="/images/models/ellectra-streeter.webp" alt="" width="1008" height="717" loading="lazy" decoding="async"></span>
               <span class="range-brand brand-ellectra">Ellectra</span>
               <span class="range-name">Streeter</span>
               <span class="range-type">Elektrische bestelwagen</span>
@@ -326,8 +318,8 @@
     <article class="model model-alt" id="ellectra-streeter" aria-labelledby="streeter-title">
       <div class="wrap model-grid">
         <div class="model-media model-media-stack">
-          <figure>
-            <img src="/images/models/ellectra-streeter.webp" alt="Witte Ellectra Streeter elektrische bestelwagen" width="682" height="462" loading="lazy" decoding="async">
+          <figure class="photo-main">
+            <img src="/images/photos/streeter-1280.webp" srcset="/images/photos/streeter-800.webp 800w, /images/photos/streeter-1280.webp 1280w" sizes="(max-width: 900px) 100vw, 600px" alt="Witte Ellectra Streeter elektrische bestelwagen met groene striping" width="1280" height="955" loading="lazy" decoding="async">
           </figure>
           <figure class="photo">
             <img src="/images/photos/streeter-laadruimte.webp" alt="Laadruimte van de Streeter met een europallet achter de bestuurdersstoel" width="465" height="447" loading="lazy" decoding="async">
