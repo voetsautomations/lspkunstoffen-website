@@ -5,8 +5,8 @@
 ## Modellen
 - [Bellier B8](https://slimmobiel.nl/#bellier-b8): brommobiel met Italiaanse looks, gebouwd in Frankrijk. Polyester carrosserie, aluminium chassis, Lombardini-dieselmotor. Uitvoeringen B8 Basis, B8 Comfort en B8 Luxe.
 - [Bellier Docker](https://slimmobiel.nl/#bellier-docker): compacte transporter (294 x 141 cm) zonder autorijbewijs, voor groenvoorziening, reiniging, binnensteden en campussen.
-- [Ellectra Kimsi](https://slimmobiel.nl/#ellectra-kimsi): elektrisch voertuig waarin je vanuit je eigen rolstoel rijdt.
-- [Ellectra Streeter](https://slimmobiel.nl/#ellectra-streeter): informatie op aanvraag.
+- [Ellectra Kimsi](https://slimmobiel.nl/#ellectra-kimsi): elektrisch voertuig waarin u vanuit uw eigen rolstoel rijdt.
+- [Ellectra Streeter](https://slimmobiel.nl/#ellectra-streeter): elektrische bestelwagen, te rijden met AM-rijbewijs. Laadvolume bijna 2 m³, laadvermogen bijna 500 kg, europallet past achter de stoel, actieradius ca. 55 km per dag, laden aan 230V stopcontact, energiekosten ca. 2,5 cent per km, geen wegenbelasting.
 
 ## Regels
 - Een brommobiel rijdt in Nederland maximaal 45 km/u.

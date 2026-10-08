@@ -18,17 +18,15 @@ Lokaal bekijken: `python3 -m http.server 8080` en open http://localhost:8080.
 
 ## Voordat de site live gaat
 
-- **Foto's vervangen.** In `images/` staan plaatshouders. Overschrijf ze met echte foto's, met dezelfde
-  bestandsnaam en verhouding 3:2 (minimaal 1200 x 800 px, JPG, liefst onder 250 kB):
-  - `hero-bellier-b8.jpg`: grote foto bovenaan
-  - `bellier-b8.jpg`, `bellier-docker.jpg`, `ellectra-kimsi.jpg`
-  - `og-image.jpg` (1200 x 630): de afbeelding die verschijnt als de link gedeeld wordt
-- **Logo.** `images/logo-slim-mobiel.svg` is een nieuw getekend woordmerk in de huisstijl (geel #ffdd00 + grafiet).
-  Wil je het originele logo houden? Zet het bestand in `images/` en pas het pad aan in de `<header>` en `<footer>`.
-- `scripts/download-originals.sh` haalt de afbeeldingen van de oude site op naar `images/original/`.
+- **Foto's.** De voertuigfoto's in `images/models/` zijn vrijstaand gemaakt uit de huidige website
+  (banner en productpagina's) en staan op een rustige studio-achtergrond. Ze zijn bruikbaar, maar de bron
+  is klein. Vraag de eigenaar of Bellier/Ellectra om originele persfoto's in hoge resolutie en vervang de
+  bestanden met dezelfde naam (WebP of PNG met transparante achtergrond werkt het mooist).
+- **Logo.** `images/logo-slim-mobiel.svg` is het bestaande logo, nagetekend als vector (scherp op elk scherm).
+  Heeft de eigenaar het originele logobestand (AI/EPS/SVG), vervang het dan daarmee.
 - **Folders (pdf).** De links wijzen nog naar `www.slimmobiel.nl/pdf/...`. Zet de pdf's bij voorkeur in een map
   `pdf/` in deze repository en pas de links aan, anders werken ze niet meer na de verhuizing.
-- **Gegevens controleren.** Adres, telefoon, modellen en het privacybeleid door de eigenaar laten nakijken.
+- **Gegevens controleren.** Adres, telefoon, specificaties en het privacybeleid door de eigenaar laten nakijken.
 - **Formulier.** Het proefritformulier opent nu een ingevulde e-mail (werkt zonder server). Voor een echt
   formulier: zet de `action` op een dienst zoals Formspree, of voeg een Vercel-functie toe.
 
@@ -51,6 +49,8 @@ privacy.html          privacybeleid
 assets/css/styles.css alle stijlen (inclusief lettertypes)
 assets/js/main.js     mobiel menu en proefritformulier
 assets/fonts/         Barlow en Barlow Condensed (woff2)
-images/               logo's, iconen en (plaatshouder)foto's
-scripts/              hulpscripts voor afbeeldingen
+images/models/        vrijstaande voertuigfoto's en de hero-opstelling
+images/photos/        overige foto's
+images/brands/        logo's van Bellier en Ellectra
+scripts/make-logo.py  tekent het logo na als SVG
 ```
