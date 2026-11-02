@@ -2,8 +2,8 @@
 import { site } from '../data/site';
 interface Props { title?: string; text?: string }
 const {
-  title = 'Een project in kunststof?',
-  text = 'Vertel ons wat u nodig heeft. We denken graag mee en sturen snel een vrijblijvende offerte.',
+  title = 'Een kunststof product laten maken?',
+  text = 'Stuur uw tekening, schets of foto. Leon denkt graag mee en maakt een vrijblijvende offerte.',
 } = Astro.props;
 ---
 <section class="cta">
@@ -13,17 +13,15 @@ const {
       <p>{text}</p>
     </div>
     <div class="btn-row">
-      <a href="/contact" class="btn btn--light">Offerte aanvragen</a>
-      <a href={`tel:${site.contact.phone.replace(/\s/g, '')}`} class="btn btn--ghost cta__ghost">{site.contact.phoneDisplay}</a>
+      <a href="/contact" class="btn">Offerte aanvragen</a>
+      <a href={`tel:${site.contact.phone}`} class="btn btn--ghost-light">Bel {site.contact.phoneDisplay}</a>
     </div>
   </div>
 </section>
 
 <style>
-  .cta { background: var(--green); color: #fff; padding: 56px 0; }
+  .cta { background: linear-gradient(120deg, #1d1a15, #2a241a); color: #ddd8cf; padding: 60px 0; border-top: 3px solid var(--bronze); }
   .cta__inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; }
-  .cta h2 { margin-bottom: .3em; }
-  .cta p { margin: 0; opacity: .9; max-width: 560px; }
-  .cta__ghost { color: #fff; border-color: #fff; }
-  .cta__ghost:hover { background: #fff; color: var(--green-dark); }
+  .cta h2 { color: #fff; margin-bottom: .3em; }
+  .cta p { margin: 0; max-width: 560px; }
 </style>
