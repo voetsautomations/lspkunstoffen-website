@@ -20,10 +20,9 @@ export const site = {
     btw: 'NL001693485B27',
     maps: 'https://www.google.com/maps/search/?api=1&query=Van+Leeuwenhoekweg+27+5482+TK+Schijndel',
   },
-  // TODO: controleer of dit de juiste profielen zijn
   social: {
-    linkedin: 'https://www.linkedin.com/company/lsp-kunststoffen',
-    facebook: 'https://www.facebook.com/lspkunststoffen',
+    linkedin: 'https://www.linkedin.com/company/lspkunststoffen/',
+    facebook: 'https://www.facebook.com/profile.php?id=100063664506597',
   },
 };
 

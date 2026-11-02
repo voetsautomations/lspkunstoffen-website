@@ -20,7 +20,6 @@ Statische output, geen JavaScript in de browser. Huisstijl afgeleid van het logo
 ## Inhoud aanpassen
 
 - **Bedrijfsgegevens, social links, diensten, machinepark en USP's:** `src/data/site.ts`.
-  Controleer de LinkedIn- en Facebook-URL (gemarkeerd met `TODO`).
 - **Galerij-foto's:** zet jpg/png/webp-bestanden in `src/assets/galerij/`. Ze verschijnen automatisch en worden
   geoptimaliseerd (webp, responsive formaten, lazy loading). De bestandsnaam wordt het onderschrift en de alt-tekst,
   dus gebruik beschrijvende namen (bv. `pp-bak-gelast.jpg`).
