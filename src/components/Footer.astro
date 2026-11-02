@@ -1,0 +1,54 @@
+---
+import { site, nav, services } from '../data/site';
+const c = site.contact;
+const year = new Date().getFullYear();
+---
+<footer class="footer">
+  <div class="container footer__grid">
+    <div>
+      <p class="footer__brand">{site.name}</p>
+      <p>{site.description}</p>
+      <a href={site.social.linkedin} class="footer__social" target="_blank" rel="noopener noreferrer" aria-label="LSP Kunststoffen op LinkedIn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+        Volg ons op LinkedIn
+      </a>
+    </div>
+    <nav aria-label="Footer menu">
+      <p class="footer__title">Menu</p>
+      <ul>{nav.map((n) => <li><a href={n.href}>{n.label}</a></li>)}</ul>
+    </nav>
+    <nav aria-label="Diensten">
+      <p class="footer__title">Diensten</p>
+      <ul>{services.map((s) => <li><a href={`/diensten/${s.slug}`}>{s.title}</a></li>)}</ul>
+    </nav>
+    <address>
+      <p class="footer__title">Contact</p>
+      <p>{c.street}<br />{c.postalCode} {c.city}</p>
+      <p>
+        <a href={`tel:${c.phone.replace(/\s/g, '')}`}>{c.phoneDisplay}</a><br />
+        <a href={`mailto:${c.email}`}>{c.email}</a>
+      </p>
+      <p>KvK: {c.kvk}</p>
+    </address>
+  </div>
+  <div class="container footer__bottom">
+    <p>© {year} {site.name}. Alle rechten voorbehouden.</p>
+  </div>
+</footer>
+
+<style>
+  .footer { background: #18211b; color: #c9d3cb; padding: 56px 0 0; font-size: .95rem; }
+  .footer a { color: #fff; text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+  .footer__grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1.2fr; gap: 32px; }
+  .footer__brand { color: #fff; font-weight: 700; font-size: 1.2rem; }
+  .footer__title { color: #fff; font-weight: 700; margin-bottom: .8em; }
+  .footer ul { list-style: none; padding: 0; margin: 0; }
+  .footer li { margin-bottom: .4em; }
+  .footer address { font-style: normal; }
+  .footer__social { display: inline-flex; align-items: center; gap: .5em; margin-top: .5em; }
+  .footer__bottom { border-top: 1px solid #2c3830; margin-top: 40px; padding: 20px; font-size: .85rem; }
+  .footer__bottom p { margin: 0; }
+  @media (max-width: 860px) { .footer__grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 520px) { .footer__grid { grid-template-columns: 1fr; } }
+</style>

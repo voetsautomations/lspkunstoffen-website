@@ -1,56 +1,36 @@
-# Slim-Mobiel website
+# LSP Kunststoffen – website
 
-Nieuwe homepage voor Slim-Mobiel B.V., importeur van Bellier brommobielen en Ellectra voor Nederland en België.
-Statische HTML/CSS/JS: geen build-stap, geen framework, geen tracking. Laadt snel en is eenvoudig te hosten.
+Compacte, snelle website gebouwd met [Astro](https://astro.build). Statische output, geen JavaScript nodig in de browser.
 
-## Deployen op Vercel
+## Structuur
 
-1. Zet deze map in een (nieuwe) GitHub-repository.
-2. Ga in Vercel naar **Add New → Project** en importeer die repository.
-3. Framework preset: **Other**. Build command en output directory leeg laten.
-4. Deploy. Koppel daarna het domein `slimmobiel.nl` onder **Settings → Domains**.
+| Pagina | URL |
+|---|---|
+| Home | `/` |
+| Diensten (overzicht) | `/diensten` |
+| Dienst-detailpagina's | `/diensten/<slug>` (automatisch per dienst) |
+| Galerij | `/galerij` |
+| Over ons | `/over-ons` |
+| Contact | `/contact` |
 
-`vercel.json` regelt nette URL's (`/privacy` in plaats van `/privacy.html`), security-headers, caching
-en 301-redirects van de oude WordPress-adressen (`/site/...`) naar de nieuwe pagina. Zo blijft de
-opgebouwde vindbaarheid in Google behouden.
+## Inhoud aanpassen
 
-Lokaal bekijken: `python3 -m http.server 8080` en open http://localhost:8080.
-
-## Voordat de site live gaat
-
-- **Foto's.** De voertuigfoto's in `images/models/` zijn vrijstaand gemaakt uit de huidige website
-  (banner en productpagina's) en staan op een rustige studio-achtergrond. Ze zijn bruikbaar, maar de bron
-  is klein. Vraag de eigenaar of Bellier/Ellectra om originele persfoto's in hoge resolutie en vervang de
-  bestanden met dezelfde naam (WebP of PNG met transparante achtergrond werkt het mooist).
-- **Logo.** `images/logo-slim-mobiel.svg` is het bestaande logo, nagetekend als vector (scherp op elk scherm).
-  Heeft de eigenaar het originele logobestand (AI/EPS/SVG), vervang het dan daarmee.
-- **Folders (pdf).** De links wijzen nog naar `www.slimmobiel.nl/pdf/...`. Zet de pdf's bij voorkeur in een map
-  `pdf/` in deze repository en pas de links aan, anders werken ze niet meer na de verhuizing.
-- **Gegevens controleren.** Adres, telefoon, specificaties en het privacybeleid door de eigenaar laten nakijken.
-- **Formulier.** Het proefritformulier opent nu een ingevulde e-mail (werkt zonder server). Voor een echt
-  formulier: zet de `action` op een dienst zoals Formspree, of voeg een Vercel-functie toe.
+- **Bedrijfsgegevens, LinkedIn, diensten en USP's:** alles staat in `src/data/site.ts`. Zoek op `TODO` voor velden die nog ingevuld moeten worden.
+- **Galerij-foto's:** zet jpg/png/webp-bestanden in `src/assets/galerij/`. Ze worden automatisch geoptimaliseerd (webp, responsive formaten, lazy loading). De bestandsnaam wordt de alt-tekst, dus gebruik beschrijvende namen (bv. `pe-plaat-gefreesd.jpg`).
+- **Nieuwe dienst:** voeg een item toe aan `services` in `src/data/site.ts`. De detailpagina, het menu in de footer en alle interne links worden automatisch aangemaakt.
 
 ## SEO
 
-- Eén duidelijke H1, logische koppenstructuur, title en meta description per pagina.
-- Schema.org JSON-LD: Organization/AutomotiveBusiness met adres en contact, WebSite, WebPage en de modellen als Product.
-- Open Graph- en Twitter-tags, canonical URL, `robots.txt`, `sitemap.xml` en `llms.txt` voor AI-zoekmachines.
-- Lettertypes (Barlow, SIL Open Font License) worden lokaal gehost: sneller en zonder datadeling met Google.
-- Afbeeldingen hebben vaste afmetingen (geen layout-verspringing) en laden lazy buiten beeld.
+- Unieke title en meta description per pagina, canonical-URL's en Open Graph-tags
+- Gestructureerde data (JSON-LD): `LocalBusiness`, `Service` en `BreadcrumbList`
+- `sitemap-index.xml` + `robots.txt`
+- Interne links: Home ↔ diensten ↔ galerij ↔ contact, "andere diensten" op elke dienstpagina, en een footer met alle pagina's en diensten
 
-Na livegang: domein toevoegen in Google Search Console en de sitemap indienen.
+## Commando's
 
-## Bestanden
-
-```
-index.html            homepage
-privacy.html          privacybeleid
-404.html              foutpagina
-assets/css/styles.css alle stijlen (inclusief lettertypes)
-assets/js/main.js     mobiel menu en proefritformulier
-assets/fonts/         Barlow en Barlow Condensed (woff2)
-images/models/        vrijstaande voertuigfoto's en de hero-opstelling
-images/photos/        overige foto's
-images/brands/        logo's van Bellier en Ellectra
-scripts/make-logo.py  tekent het logo na als SVG
+```bash
+npm install
+npm run dev      # lokaal ontwikkelen op http://localhost:4321
+npm run build    # productie-build naar dist/
+npm run preview  # build lokaal bekijken
 ```

@@ -1,0 +1,83 @@
+---
+import Base from '../layouts/Base.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+import GalleryGrid from '../components/GalleryGrid.astro';
+import { site, services, usps } from '../data/site';
+---
+<Base title={site.name}>
+  <section class="hero">
+    <div class="container"><div class="hero__inner">
+      <span class="eyebrow">{site.tagline}</span>
+      <h1>Kunststof op maat, vakkundig gemaakt</h1>
+      <p class="lead">
+        LSP Kunststoffen maakt kunststof onderdelen en producten precies zoals u ze nodig heeft.
+        Van één stuk tot kleine serie, met persoonlijk contact en korte lijnen.
+      </p>
+      <div class="btn-row">
+        <a href="/contact" class="btn">Vraag een offerte aan</a>
+        <a href="/diensten" class="btn btn--ghost">Bekijk onze diensten</a>
+      </div>
+    </div></div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section__head">
+        <span class="eyebrow">Diensten</span>
+        <h2>Wat wij voor u doen</h2>
+        <p class="lead">Een overzichtelijk aanbod, volledig afgestemd op uw project.</p>
+      </div>
+      <div class="grid grid--3">
+        {services.map((s) => (
+          <article class="card">
+            <h3>{s.title}</h3>
+            <p>{s.short}</p>
+            <a href={`/diensten/${s.slug}`} class="card__link">Meer over {s.title.toLowerCase()}</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container grid grid--2">
+      <div>
+        <span class="eyebrow">Over ons</span>
+        <h2>Vakmanschap met korte lijnen</h2>
+        <p>
+          Bij LSP Kunststoffen spreekt u direct met de vakman. We denken mee over materiaal en uitvoering,
+          maken heldere afspraken en leveren netjes af.
+        </p>
+        <a href="/over-ons" class="btn btn--ghost">Leer ons kennen</a>
+      </div>
+      <ul class="usps">
+        {usps.map((u) => (
+          <li><strong>{u.title}</strong><span>{u.text}</span></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section__head">
+        <span class="eyebrow">Galerij</span>
+        <h2>Een greep uit ons werk</h2>
+      </div>
+      <GalleryGrid limit={3} />
+      <p style="margin-top:24px"><a href="/galerij" class="card__link">Bekijk de volledige galerij</a></p>
+    </div>
+  </section>
+
+  <CtaBanner />
+</Base>
+
+<style>
+  .hero { background: linear-gradient(160deg, var(--green-light) 0%, #fff 70%); padding: 96px 0 88px; }
+  .hero__inner { max-width: 760px; }
+  .hero .lead { margin-bottom: 1.6em; }
+  .usps { list-style: none; padding: 0; margin: 0; display: grid; gap: 16px; }
+  .usps li { background: #fff; border-left: 4px solid var(--green); border-radius: 8px; padding: 18px 20px; display: grid; gap: 4px; }
+  .usps span { color: var(--muted); }
+  @media (max-width: 640px) { .hero { padding: 64px 0 56px; } }
+</style>
