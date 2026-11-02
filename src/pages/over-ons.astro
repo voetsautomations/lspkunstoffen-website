@@ -1,0 +1,50 @@
+---
+import Base from '../layouts/Base.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+import { site, usps } from '../data/site';
+---
+<Base title="Over ons" description="Maak kennis met LSP Kunststoffen: vakmanschap in kunststof met persoonlijk contact en korte lijnen.">
+  <section class="page-hero">
+    <div class="container">
+      <Breadcrumbs items={[{ href: '/', label: 'Home' }, { href: '/over-ons', label: 'Over ons' }]} />
+      <h1>Over LSP Kunststoffen</h1>
+      <p class="lead">Een betrouwbare partner voor kunststof maatwerk.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container grid grid--2">
+      <div>
+        <!-- TODO: vervang door het echte verhaal van de eigenaar/het bedrijf -->
+        <h2>Ons verhaal</h2>
+        <p>
+          LSP Kunststoffen is gespecialiseerd in het bewerken en verwerken van kunststof. Wat begon met passie voor
+          het vak, is uitgegroeid tot een bedrijf waar klanten terecht kunnen voor maatwerk dat klopt.
+        </p>
+        <p>
+          We werken voor bedrijven en particulieren, en houden het graag persoonlijk: u heeft één aanspreekpunt
+          dat uw project van begin tot eind begeleidt.
+        </p>
+        <div class="btn-row">
+          <a href="/diensten" class="btn">Onze diensten</a>
+          <a href={site.social.linkedin} class="btn btn--ghost" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </div>
+      </div>
+      <div class="placeholder-img" aria-hidden="true">Foto werkplaats</div>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container">
+      <h2>Waarom LSP Kunststoffen</h2>
+      <div class="grid grid--3">
+        {usps.map((u) => (
+          <div class="card"><h3>{u.title}</h3><p>{u.text}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBanner />
+</Base>

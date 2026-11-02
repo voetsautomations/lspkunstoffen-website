@@ -1,0 +1,33 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+import { services } from '../../data/site';
+---
+<Base title="Diensten" description="Bekijk de diensten van LSP Kunststoffen: kunststof op maat, maatwerk producten en montage & reparatie.">
+  <section class="page-hero">
+    <div class="container">
+      <Breadcrumbs items={[{ href: '/', label: 'Home' }, { href: '/diensten', label: 'Diensten' }]} />
+      <h1>Onze diensten</h1>
+      <p class="lead">Van een enkel onderdeel tot een compleet product: wij leveren kunststof maatwerk dat past.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container grid grid--3">
+      {services.map((s) => (
+        <article class="card">
+          <h2 class="h3">{s.title}</h2>
+          <p>{s.intro}</p>
+          <a href={`/diensten/${s.slug}`} class="card__link">Lees meer</a>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <CtaBanner title="Staat uw vraag er niet tussen?" text="Neem gerust contact op. Vaak is er meer mogelijk dan u denkt." />
+</Base>
+
+<style>
+  .h3 { font-size: 1.25rem; }
+</style>

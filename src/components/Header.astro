@@ -1,0 +1,50 @@
+---
+import { site, nav } from '../data/site';
+const path = Astro.url.pathname.replace(/\.html$/, '').replace(/\/$/, '') || '/';
+const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
+---
+<header class="header">
+  <div class="container header__inner">
+    <a href="/" class="logo" aria-label={`${site.name} – home`}>
+      <span class="logo__mark">LSP</span>
+      <span class="logo__text">Kunststoffen</span>
+    </a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Menu openen" />
+    <label for="nav-toggle" class="nav-burger" aria-hidden="true"><span></span></label>
+    <nav class="nav" aria-label="Hoofdmenu">
+      <ul>
+        {nav.map((item) => (
+          <li>
+            <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>{item.label}</a>
+          </li>
+        ))}
+      </ul>
+      <a href={`tel:${site.contact.phone.replace(/\s/g, '')}`} class="btn nav__cta">Bel direct</a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .header { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+  .header__inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+  .logo { display: flex; align-items: center; gap: .5em; text-decoration: none; color: var(--ink); font-weight: 700; font-size: 1.15rem; }
+  .logo__mark { background: var(--green); color: #fff; padding: .2em .5em; border-radius: 8px; letter-spacing: .04em; }
+  .nav { display: flex; align-items: center; gap: 28px; }
+  .nav ul { display: flex; gap: 24px; list-style: none; margin: 0; padding: 0; }
+  .nav ul a { text-decoration: none; color: var(--ink); font-weight: 500; }
+  .nav ul a:hover, .nav ul a[aria-current='page'] { color: var(--green); }
+  .nav__cta { padding: .55em 1.1em; }
+  .nav-toggle, .nav-burger { display: none; }
+
+  @media (max-width: 860px) {
+    .nav-burger { display: grid; place-items: center; width: 44px; height: 44px; cursor: pointer; }
+    .nav-burger span, .nav-burger span::before, .nav-burger span::after { display: block; width: 24px; height: 2px; background: var(--ink); position: relative; content: ''; }
+    .nav-burger span::before { position: absolute; top: -7px; }
+    .nav-burger span::after { position: absolute; top: 7px; }
+    .nav { display: none; position: absolute; top: 72px; left: 0; right: 0; background: #fff; border-bottom: 1px solid var(--line); flex-direction: column; align-items: stretch; padding: 12px 20px 20px; gap: 12px; }
+    .nav ul { flex-direction: column; gap: 0; }
+    .nav ul a { display: block; padding: 12px 0; border-bottom: 1px solid var(--line); }
+    .nav-toggle:checked ~ .nav { display: flex; }
+    .nav__cta { justify-content: center; }
+  }
+</style>

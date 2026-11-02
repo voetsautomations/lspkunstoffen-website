@@ -1,0 +1,23 @@
+---
+import Base from '../layouts/Base.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+import GalleryGrid from '../components/GalleryGrid.astro';
+---
+<Base title="Galerij" description="Bekijk projecten van LSP Kunststoffen: kunststof maatwerk, producten en montage.">
+  <section class="page-hero">
+    <div class="container">
+      <Breadcrumbs items={[{ href: '/', label: 'Home' }, { href: '/galerij', label: 'Galerij' }]} />
+      <h1>Galerij</h1>
+      <p class="lead">Een selectie van projecten die wij met zorg hebben gemaakt. Benieuwd wat we voor u kunnen doen? <a href="/diensten">Bekijk onze diensten</a>.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <GalleryGrid />
+    </div>
+  </section>
+
+  <CtaBanner title="Zoiets nodig?" text="Stuur ons uw tekening of idee en we maken een vrijblijvende offerte." />
+</Base>

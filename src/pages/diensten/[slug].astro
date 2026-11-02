@@ -1,0 +1,73 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+import { services, site, type Service } from '../../data/site';
+
+export function getStaticPaths() {
+  return services.map((service) => ({ params: { slug: service.slug }, props: { service } }));
+}
+
+const { service } = Astro.props as { service: Service };
+const others = services.filter((s) => s.slug !== service.slug);
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: service.title,
+    description: service.intro,
+    provider: { '@id': `${site.url}/#bedrijf` },
+    areaServed: 'NL',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${site.url}/` },
+      { '@type': 'ListItem', position: 2, name: 'Diensten', item: `${site.url}/diensten` },
+      { '@type': 'ListItem', position: 3, name: service.title, item: `${site.url}/diensten/${service.slug}` },
+    ],
+  },
+];
+---
+<Base title={service.title} description={`${service.short} ${site.name} – vraag vrijblijvend een offerte aan.`} schema={schema}>
+  <section class="page-hero">
+    <div class="container">
+      <Breadcrumbs items={[{ href: '/', label: 'Home' }, { href: '/diensten', label: 'Diensten' }, { href: `/diensten/${service.slug}`, label: service.title }]} />
+      <h1>{service.title}</h1>
+      <p class="lead">{service.intro}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container grid grid--2">
+      <div>
+        <h2>Wat u van ons kunt verwachten</h2>
+        <ul class="checklist">{service.points.map((p) => <li>{p}</li>)}</ul>
+        <div class="btn-row">
+          <a href="/contact" class="btn">Offerte aanvragen</a>
+          <a href="/galerij" class="btn btn--ghost">Bekijk ons werk</a>
+        </div>
+      </div>
+      <div class="placeholder-img" aria-hidden="true">{service.title}</div>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container">
+      <h2>Andere diensten</h2>
+      <div class="grid grid--3">
+        {others.map((s) => (
+          <article class="card">
+            <h3>{s.title}</h3>
+            <p>{s.short}</p>
+            <a href={`/diensten/${s.slug}`} class="card__link">Meer informatie</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBanner />
+</Base>
