@@ -1,46 +1,66 @@
 ---
+import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import CtaBanner from '../components/CtaBanner.astro';
-import { site, usps } from '../data/site';
+import { site, machines, usps } from '../data/site';
+import { getImage, widthsFor } from '../data/images';
+import bus from '../assets/foto/bedrijfsbus.png';
+
+const cnc = getImage('cnc-freesbank-werkplaats')!;
 ---
-<Base title="Over ons" description="Maak kennis met LSP Kunststoffen: vakmanschap in kunststof met persoonlijk contact en korte lijnen.">
+<Base title="Over ons" description="LSP Kunststoffen in Schijndel helpt u bij bijna al uw wensen op het gebied van kunststofbewerking en lassen. Bekijk ons machinepark.">
   <section class="page-hero">
     <div class="container">
       <Breadcrumbs items={[{ href: '/', label: 'Home' }, { href: '/over-ons', label: 'Over ons' }]} />
       <h1>Over LSP Kunststoffen</h1>
-      <p class="lead">Een betrouwbare partner voor kunststof maatwerk.</p>
+      <p class="lead">{site.slogan}.</p>
     </div>
   </section>
 
   <section class="section">
     <div class="container grid grid--2">
       <div>
-        <!-- TODO: vervang door het echte verhaal van de eigenaar/het bedrijf -->
-        <h2>Ons verhaal</h2>
+        <h2>Kunststofbewerking en lassen</h2>
         <p>
-          LSP Kunststoffen is gespecialiseerd in het bewerken en verwerken van kunststof. Wat begon met passie voor
-          het vak, is uitgegroeid tot een bedrijf waar klanten terecht kunnen voor maatwerk dat klopt.
+          LSP Kunststoffen kan u behulpzaam zijn in bijna al uw wensen op het gebied van kunststofbewerking en lassen.
+          Vanuit onze werkplaats aan de Van Leeuwenhoekweg in Schijndel maken we kunststof onderdelen en producten
+          op maat: van ontwerp tot realisatie.
         </p>
         <p>
-          We werken voor bedrijven en particulieren, en houden het graag persoonlijk: u heeft één aanspreekpunt
-          dat uw project van begin tot eind begeleidt.
+          Bij ons heeft u één aanspreekpunt: {site.owner}. Korte lijnen, eerlijk advies over materiaal en uitvoering,
+          en een product dat klopt.
         </p>
         <div class="btn-row">
           <a href="/diensten" class="btn">Onze diensten</a>
-          <a href={site.social.linkedin} class="btn btn--ghost" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href={site.social.linkedin} class="btn btn--ghost" target="_blank" rel="noopener noreferrer">Volg ons op LinkedIn</a>
         </div>
       </div>
-      <div class="placeholder-img" aria-hidden="true">Foto werkplaats</div>
+      <div class="photo about__photo">
+        <Image src={bus} alt="Bedrijfsbus van LSP Kunststoffen" widths={widthsFor(bus, [480])} sizes="(max-width: 900px) 100vw, 520px" loading="eager" />
+      </div>
     </div>
   </section>
 
-  <section class="section section--soft">
+  <section class="section section--dark">
+    <div class="container grid grid--2">
+      <div class="photo about__photo">
+        <Image src={cnc.src} alt="3-assige CNC-freesbank in de werkplaats van LSP Kunststoffen" widths={widthsFor(cnc.src, [480, 800, 1100])} sizes="(max-width: 900px) 100vw, 520px" loading="lazy" />
+      </div>
+      <div>
+        <span class="eyebrow">Machinepark</span>
+        <h2>Wij zijn in het bezit van verschillende bewerkingsmachines</h2>
+        <ul class="checklist">{machines.map((m) => <li>{m}</li>)}</ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
     <div class="container">
       <h2>Waarom LSP Kunststoffen</h2>
       <div class="grid grid--3">
         {usps.map((u) => (
-          <div class="card"><h3>{u.title}</h3><p>{u.text}</p></div>
+          <div class="card card--plain"><h3>{u.title}</h3><p>{u.text}</p></div>
         ))}
       </div>
     </div>
@@ -48,3 +68,9 @@ import { site, usps } from '../data/site';
 
   <CtaBanner />
 </Base>
+
+<style>
+  .about__photo { aspect-ratio: 4 / 3; }
+  .grid--3 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  .card--plain p { color: var(--muted); margin: 0; }
+</style>

@@ -1,12 +1,12 @@
 ---
 import { site, nav } from '../data/site';
-const path = Astro.url.pathname.replace(/\.html$/, '').replace(/\/$/, '') || '/';
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
 ---
 <header class="header">
   <div class="container header__inner">
     <a href="/" class="logo" aria-label={`${site.name} – home`}>
-      <span class="logo__mark">LSP</span>
+      <span class="logo__lsp">LSP</span>
       <span class="logo__text">Kunststoffen</span>
     </a>
     <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Menu openen" />
@@ -19,32 +19,37 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
           </li>
         ))}
       </ul>
-      <a href={`tel:${site.contact.phone.replace(/\s/g, '')}`} class="btn nav__cta">Bel direct</a>
+      <a href={`tel:${site.contact.phone}`} class="btn nav__cta">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg>
+        {site.contact.phoneDisplay}
+      </a>
     </nav>
   </div>
 </header>
 
 <style>
-  .header { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+  .header { position: sticky; top: 0; z-index: 50; background: var(--dark); border-bottom: 1px solid #2c2c2c; }
   .header__inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
-  .logo { display: flex; align-items: center; gap: .5em; text-decoration: none; color: var(--ink); font-weight: 700; font-size: 1.15rem; }
-  .logo__mark { background: var(--green); color: #fff; padding: .2em .5em; border-radius: 8px; letter-spacing: .04em; }
+  .logo { display: flex; align-items: baseline; gap: .35em; text-decoration: none; line-height: 1; }
+  .logo__lsp { color: var(--bronze); font-weight: 800; font-size: 1.9rem; letter-spacing: -.02em; }
+  .logo__text { color: #d6d3cd; font-weight: 600; font-size: 1.05rem; }
   .nav { display: flex; align-items: center; gap: 28px; }
-  .nav ul { display: flex; gap: 24px; list-style: none; margin: 0; padding: 0; }
-  .nav ul a { text-decoration: none; color: var(--ink); font-weight: 500; }
-  .nav ul a:hover, .nav ul a[aria-current='page'] { color: var(--green); }
-  .nav__cta { padding: .55em 1.1em; }
+  .nav ul { display: flex; gap: 26px; list-style: none; margin: 0; padding: 0; }
+  .nav ul a { text-decoration: none; color: #d6d3cd; font-weight: 500; padding: 6px 0; border-bottom: 2px solid transparent; }
+  .nav ul a:hover { color: #fff; }
+  .nav ul a[aria-current='page'] { color: #fff; border-bottom-color: var(--bronze); }
+  .nav__cta { padding: .5em 1em; font-size: .95rem; }
   .nav-toggle, .nav-burger { display: none; }
 
-  @media (max-width: 860px) {
+  @media (max-width: 900px) {
     .nav-burger { display: grid; place-items: center; width: 44px; height: 44px; cursor: pointer; }
-    .nav-burger span, .nav-burger span::before, .nav-burger span::after { display: block; width: 24px; height: 2px; background: var(--ink); position: relative; content: ''; }
+    .nav-burger span, .nav-burger span::before, .nav-burger span::after { display: block; width: 24px; height: 2px; background: #fff; position: relative; content: ''; }
     .nav-burger span::before { position: absolute; top: -7px; }
     .nav-burger span::after { position: absolute; top: 7px; }
-    .nav { display: none; position: absolute; top: 72px; left: 0; right: 0; background: #fff; border-bottom: 1px solid var(--line); flex-direction: column; align-items: stretch; padding: 12px 20px 20px; gap: 12px; }
+    .nav { display: none; position: absolute; top: 72px; left: 0; right: 0; background: var(--dark); border-bottom: 3px solid var(--bronze); flex-direction: column; align-items: stretch; padding: 8px 20px 20px; gap: 14px; }
     .nav ul { flex-direction: column; gap: 0; }
-    .nav ul a { display: block; padding: 12px 0; border-bottom: 1px solid var(--line); }
+    .nav ul a { display: block; padding: 13px 0; border-bottom: 1px solid #2c2c2c; }
+    .nav ul a[aria-current='page'] { border-bottom-color: #2c2c2c; color: var(--bronze-light); }
     .nav-toggle:checked ~ .nav { display: flex; }
-    .nav__cta { justify-content: center; }
   }
 </style>

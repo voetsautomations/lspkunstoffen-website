@@ -2,7 +2,7 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { site } from '../data/site';
+import { site, services } from '../data/site';
 
 interface Props {
   title: string;
@@ -10,8 +10,8 @@ interface Props {
   schema?: Record<string, unknown>[];
 }
 const { title, description = site.description, schema = [] } = Astro.props;
-const fullTitle = title === site.name ? `${site.name} | ${site.tagline}` : `${title} | ${site.name}`;
-const canonical = new URL(Astro.url.pathname.replace(/\.html$/, '').replace(/\/index$/, '') || '/', site.url).href;
+const fullTitle = title === site.name ? `${site.name} | Kunststof frezen, draaien & lassen in Schijndel` : `${title} | ${site.name}`;
+const canonical = new URL(Astro.url.pathname.replace(/\/$/, '') || '/', site.url).href;
 const c = site.contact;
 
 const business = {
@@ -19,10 +19,13 @@ const business = {
   '@type': 'LocalBusiness',
   '@id': `${site.url}/#bedrijf`,
   name: site.name,
+  slogan: site.slogan,
   url: site.url,
   description: site.description,
+  founder: { '@type': 'Person', name: site.owner },
   telephone: c.phone,
   email: c.email,
+  vatID: c.btw,
   address: {
     '@type': 'PostalAddress',
     streetAddress: c.street,
@@ -30,7 +33,9 @@ const business = {
     addressLocality: c.city,
     addressCountry: c.country,
   },
-  sameAs: [site.social.linkedin],
+  areaServed: 'NL',
+  knowsAbout: services.map((s) => s.title),
+  sameAs: [site.social.linkedin, site.social.facebook],
 };
 ---
 <!doctype html>
@@ -43,7 +48,7 @@ const business = {
     <link rel="canonical" href={canonical} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="sitemap" href="/sitemap-index.xml" />
-    <meta name="theme-color" content="#467c45" />
+    <meta name="theme-color" content="#141414" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="nl_NL" />
     <meta property="og:site_name" content={site.name} />

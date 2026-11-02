@@ -1,0 +1,26 @@
+---
+import { Image } from 'astro:assets';
+import type { Service } from '../data/site';
+import { getImage, widthsFor } from '../data/images';
+
+interface Props { service: Service; heading?: 'h2' | 'h3' }
+const { service, heading = 'h3' } = Astro.props;
+const img = getImage(service.image);
+const H = heading;
+---
+<article class="card">
+  {img && (
+    <div class="card__img">
+      <Image src={img.src} alt={img.alt} widths={widthsFor(img.src, [400, 700])} sizes="(max-width: 640px) 100vw, 280px" loading="lazy" />
+    </div>
+  )}
+  <div class="card__body">
+    <H class="card__title">{service.title}</H>
+    <p>{service.short}</p>
+    <a href={`/diensten/${service.slug}`} class="card__link">Lees meer<span class="sr-only"> over {service.title}</span></a>
+  </div>
+</article>
+
+<style>
+  .card__title { font-size: 1.2rem; }
+</style>

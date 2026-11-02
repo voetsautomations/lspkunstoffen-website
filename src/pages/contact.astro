@@ -3,31 +3,32 @@ import Base from '../layouts/Base.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import { site, services } from '../data/site';
 const c = site.contact;
-const tel = c.phone.replace(/\s/g, '');
 ---
-<Base title="Contact" description={`Neem contact op met ${site.name} voor een vrijblijvende offerte. Bel ${c.phoneDisplay} of mail ${c.email}.`}>
+<Base title="Contact" description={`Neem contact op met ${site.name} in Schijndel. Bel ${c.phoneDisplay} of mail ${c.email} voor een vrijblijvende offerte.`}>
   <section class="page-hero">
     <div class="container">
       <Breadcrumbs items={[{ href: '/', label: 'Home' }, { href: '/contact', label: 'Contact' }]} />
       <h1>Contact</h1>
-      <p class="lead">Vraag een offerte aan of stel uw vraag. We reageren meestal binnen één werkdag.</p>
+      <p class="lead">Vraag een offerte aan of stel uw vraag. Bellen, mailen of langskomen kan allemaal.</p>
     </div>
   </section>
 
   <section class="section">
     <div class="container grid grid--2 contact">
-      <div class="card">
-        <h2 class="h3">Direct contact</h2>
+      <div class="card contact__card">
+        <h2 class="h3">{site.name}</h2>
         <ul class="contact__list">
-          <li><span>Telefoon</span><a href={`tel:${tel}`}>{c.phoneDisplay}</a></li>
+          <li><span>Contactpersoon</span>{site.owner}</li>
+          <li><span>Telefoon</span><a href={`tel:${c.phone}`}>{c.phoneDisplay}</a></li>
           <li><span>E-mail</span><a href={`mailto:${c.email}`}>{c.email}</a></li>
-          <li><span>Adres</span>{c.street}, {c.postalCode} {c.city}</li>
-          <li><span>LinkedIn</span><a href={site.social.linkedin} target="_blank" rel="noopener noreferrer">LSP Kunststoffen</a></li>
+          <li><span>Adres</span><a href={c.maps} target="_blank" rel="noopener noreferrer">{c.street}, {c.postalCode} {c.city}</a></li>
           <li><span>KvK</span>{c.kvk}</li>
+          <li><span>BTW</span>{c.btw}</li>
         </ul>
         <div class="btn-row">
-          <a href={`tel:${tel}`} class="btn">Bel direct</a>
+          <a href={`tel:${c.phone}`} class="btn">Bel direct</a>
           <a href={`mailto:${c.email}?subject=Offerteaanvraag`} class="btn btn--ghost">Mail ons</a>
+          <a href={c.maps} class="btn btn--ghost" target="_blank" rel="noopener noreferrer">Route</a>
         </div>
       </div>
       <div>
@@ -48,10 +49,14 @@ const tel = c.phone.replace(/\s/g, '');
 </Base>
 
 <style>
-  .h3 { font-size: 1.3rem; }
+  .h3 { font-size: 1.35rem; }
   .contact { align-items: start; }
+  .contact__card { padding: 28px; border-top: 3px solid var(--bronze); }
+  .contact__card:hover { transform: none; box-shadow: none; }
   .contact__list { list-style: none; padding: 0; margin: 0 0 1.5em; }
-  .contact__list li { display: grid; grid-template-columns: 90px 1fr; gap: 8px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+  .contact__list li { display: grid; grid-template-columns: 120px 1fr; gap: 8px; padding: 10px 0; border-bottom: 1px solid var(--line); }
   .contact__list span { color: var(--muted); font-size: .9rem; }
   .links { padding-left: 1.2em; }
+  .links li::marker { color: var(--bronze); }
+  @media (max-width: 420px) { .contact__list li { grid-template-columns: 1fr; gap: 0; } }
 </style>

@@ -1,8 +1,11 @@
 ---
+import { Image } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import CtaBanner from '../../components/CtaBanner.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
 import { services, site, type Service } from '../../data/site';
+import { getImage, widthsFor } from '../../data/images';
 
 export function getStaticPaths() {
   return services.map((service) => ({ params: { slug: service.slug }, props: { service } }));
@@ -10,6 +13,7 @@ export function getStaticPaths() {
 
 const { service } = Astro.props as { service: Service };
 const others = services.filter((s) => s.slug !== service.slug);
+const img = getImage(service.image);
 
 const schema = [
   {
@@ -31,7 +35,7 @@ const schema = [
   },
 ];
 ---
-<Base title={service.title} description={`${service.short} ${site.name} – vraag vrijblijvend een offerte aan.`} schema={schema}>
+<Base title={`${service.title} in Schijndel`} description={`${service.short} ${site.name} in Schijndel – vraag vrijblijvend een offerte aan.`} schema={schema}>
   <section class="page-hero">
     <div class="container">
       <Breadcrumbs items={[{ href: '/', label: 'Home' }, { href: '/diensten', label: 'Diensten' }, { href: `/diensten/${service.slug}`, label: service.title }]} />
@@ -43,14 +47,18 @@ const schema = [
   <section class="section">
     <div class="container grid grid--2">
       <div>
-        <h2>Wat u van ons kunt verwachten</h2>
+        <h2>Wat wij voor u kunnen doen</h2>
         <ul class="checklist">{service.points.map((p) => <li>{p}</li>)}</ul>
         <div class="btn-row">
           <a href="/contact" class="btn">Offerte aanvragen</a>
           <a href="/galerij" class="btn btn--ghost">Bekijk ons werk</a>
         </div>
       </div>
-      <div class="placeholder-img" aria-hidden="true">{service.title}</div>
+      {img && (
+        <div class="photo service__photo">
+          <Image src={img.src} alt={img.alt} widths={widthsFor(img.src, [480, 800, 1100])} sizes="(max-width: 900px) 100vw, 540px" loading="eager" />
+        </div>
+      )}
     </div>
   </section>
 
@@ -58,16 +66,15 @@ const schema = [
     <div class="container">
       <h2>Andere diensten</h2>
       <div class="grid grid--3">
-        {others.map((s) => (
-          <article class="card">
-            <h3>{s.title}</h3>
-            <p>{s.short}</p>
-            <a href={`/diensten/${s.slug}`} class="card__link">Meer informatie</a>
-          </article>
-        ))}
+        {others.map((s) => <ServiceCard service={s} />)}
       </div>
     </div>
   </section>
 
   <CtaBanner />
 </Base>
+
+<style>
+  .service__photo { aspect-ratio: 4 / 3; }
+  .grid--3 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+</style>
